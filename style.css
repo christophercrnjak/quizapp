@@ -9,3 +9,20 @@ body {
     align-items: center;
     height: calc(100vh - 50px);
 }
+
+.quiz_card {
+    width: 30rem;
+}
+
+.question_button {
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
+    padding-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz_answer_card:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.03);
+}

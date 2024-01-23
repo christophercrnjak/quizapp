@@ -22,7 +22,7 @@
     ></script>
   </head>
 
-  <body>
+  <body onload="init()">
     <nav class="navbar bg-body-tertiary">
       <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">Quiz-App</span>
@@ -30,16 +30,9 @@
     </nav>
 
     <div class="container">
-      <div class="card" style="width: 18rem">
+      <div class="card quiz_card">
         <img src="img/testpic.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+        <div class="card-body" id="currentQuestion"></div>
       </div>
     </div>
   </body>
