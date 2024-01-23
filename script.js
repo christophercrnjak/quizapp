@@ -77,16 +77,16 @@ function showQuestionHTML(question) {
   return /*html*/ `
     <h5 class="card-title">${question["question"]}</h5>
 
-    <div class="card quiz_answer_card mb-2" onclick="checkAnswer('answer_1')">
+    <div class="card quiz_answer_card mb-2" id="answer_1" onclick="checkAnswer('answer_1')">
         <div class="card-body">${question["answer_1"]}</div>
     </div>
-    <div class="card quiz_answer_card mb-2" onclick="checkAnswer('answer_2')">
+    <div class="card quiz_answer_card mb-2" id="answer_2" onclick="checkAnswer('answer_2')">
         <div class="card-body">${question["answer_2"]}</div>
     </div>
-    <div class="card quiz_answer_card mb-2" onclick="checkAnswer('answer_3')">
+    <div class="card quiz_answer_card mb-2" id="answer_3" onclick="checkAnswer('answer_3')">
         <div class="card-body">${question["answer_3"]}</div>
     </div>
-    <div class="card quiz_answer_card mb-2" onclick="checkAnswer('answer_4')">
+    <div class="card quiz_answer_card mb-2" id="answer_4" onclick="checkAnswer('answer_4')">
         <div class="card-body">${question["answer_4"]}</div>
     </div>
 
@@ -103,8 +103,8 @@ function checkAnswer(selectedAnswer) {
     let selectedAnswerInteger = selectedAnswer.slice(-1);
 
     if (selectedAnswerInteger == question["right_answer"]) {
-        console.log('You choose the right answer!');
+        document.getElementById(selectedAnswer).classList.add("bg-success");
     } else {
-        console.log('Wrong! That is not correct!');
+        document.getElementById(selectedAnswer).classList.add("bg-danger");
     }
 }
