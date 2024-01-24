@@ -67,6 +67,7 @@ function init() {
 function showQuestion() {
   let question = questions[currentQuestion];
   let content = document.getElementById("currentQuestion");
+  let hello;
 
   content.innerHTML = "";
 
@@ -92,19 +93,40 @@ function showQuestionHTML(question) {
 
     <div class="question_button">
         <span> Frage <b>1</b> von <b id="all_questions_amount">${questions.length}</b> </span>
-        <a href="#" class="btn btn-primary">Nächste Frage</a>
+        <button href="#" class="btn btn-primary" disabled id="question_button">Nächste Frage</button>
     </div>
 
   `;
 }
 
 function checkAnswer(selectedAnswer) {
-    let question = questions[currentQuestion];
-    let selectedAnswerInteger = selectedAnswer.slice(-1);
+  let question = questions[currentQuestion];
+  let selectedAnswerInteger = selectedAnswer.slice(-1);
+  let idOfRightAnswer = question["right_answer"];
+  let rightAnswer = `answer_${idOfRightAnswer}`;
 
-    if (selectedAnswerInteger == question["right_answer"]) {
-        document.getElementById(selectedAnswer).classList.add("bg-success");
-    } else {
-        document.getElementById(selectedAnswer).classList.add("bg-danger");
-    }
+  if (selectedAnswerInteger == question["right_answer"]) {
+    document.getElementById(selectedAnswer).classList.add("bg-success");
+    afterClicking();
+  } else {
+    document.getElementById(selectedAnswer).classList.add("bg-danger");
+    document.getElementById(rightAnswer).classList.add("bg-success");
+    afterClicking();
+  }
+}
+
+function afterClicking() {
+  answerNotClickable();
+  changeEnableStatusOfButton();
+}
+
+function answerNotClickable() {
+  document.getElementById('answer_1').classList.add("notClickable");
+  document.getElementById('answer_2').classList.add("notClickable");
+  document.getElementById('answer_3').classList.add("notClickable");
+  document.getElementById('answer_4').classList.add("notClickable");
+}
+
+function changeEnableStatusOfButton() {
+  document.getElementById('question_button').disabled = false;
 }
