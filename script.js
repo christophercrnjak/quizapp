@@ -59,16 +59,31 @@ let questions = [
 ];
 
 let currentQuestion = 0;
+let score = 0;
 
 function init() {
-  show();
+  showStart();
+}
+
+function showStart() {
+  let content = document.getElementById("currentQuestion");
+  content.innerHTML = "";
+
+  content.innerHTML = showStartHTML();
+}
+
+function showStartHTML() {
+  return /*html*/`
+    <h5 class="card-title">Welcome to the Quiz!!!</h5>
+    <button onclick="show()" class="btn btn-primary">START NOW   ></button>
+  `;
 }
 
 function show() {
   if (currentQuestion < 7) {
     showQuestion();
   } else {
-  showEnd();
+    showEnd();
   }
 }
 
@@ -106,19 +121,6 @@ function showQuestionHTML(question) {
   `;
 }
 
-function showStart() {
-  let content = document.getElementById("currentQuestion");
-  content = "";
-
-  content.innerHTML = showStartHTML();
-}
-
-function showStartHTML() {
-  return /*html*/`
-    <h5 class="card-title">Welcome to the Quiz!!!</h5>
-  `;
-}
-
 function showEnd() {
   let content = document.getElementById("currentQuestion");
   content.innerHTML = "";
@@ -129,6 +131,7 @@ function showEnd() {
 function showEndHTML() {
   return /*html*/`
     <h5 class="card-title">Ende!</h5>
+    <button onclick="restart()" class="btn btn-primary">YOUR SCORE ${score}/7</button>
   `;
 }
 
@@ -141,6 +144,7 @@ function checkAnswer(selectedAnswer) {
   if (selectedAnswerInteger == question["right_answer"]) {
     document.getElementById(selectedAnswer).classList.add("bg-success");
     afterClickingAnswer();
+    score++;
   } else {
     document.getElementById(selectedAnswer).classList.add("bg-danger");
     document.getElementById(rightAnswer).classList.add("bg-success");
@@ -167,4 +171,10 @@ function changeEnableStatusOfButton() {
 function nextQuestion() {
   currentQuestion++;
   show();
+}
+
+function restart() {
+  currentQuestion = 0;
+  score = 0;
+  showStart();
 }

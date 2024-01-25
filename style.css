@@ -3,15 +3,9 @@ body {
     background-color: #FEFAEF !important;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 50px);
-}
-
 .quiz_card {
     width: 30rem;
+    background-color: #F7F7F7;
 }
 
 .question_button {
@@ -33,4 +27,40 @@ body {
 
 .notClickable {
     pointer-events: none;
+}
+
+.wrapper {
+    display: flex;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+}
+
+aside {
+    background-color: #27355C;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+    height: 100%;
+    padding: 8px;
+}
+
+nav {
+    font-family: 'Rubik', sans-serif;
+    gap: 16px;
+}
+
+.logo_element {
+    width: 60%;
+}
+
+.card-title {
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
 }
