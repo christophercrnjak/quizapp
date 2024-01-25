@@ -16,11 +16,11 @@ let questions = [
     right_answer: 2,
   },
   {
-    question: "How do you create an ordered list in HTML?",
-    answer_1: "<ul>",
-    answer_2: "<li>",
-    answer_3: "<ol>",
-    answer_4: "<list>",
+    question: "What does the HTML <a> tag primarily represent?",
+    answer_1: "Image container",
+    answer_2: "Bold text",
+    answer_3: "Navigation link",
+    answer_4: "Bulleted list item",
     right_answer: 3,
   },
   {
@@ -32,11 +32,11 @@ let questions = [
     right_answer: 1,
   },
   {
-    question: "How can you make text bold in HTML?",
-    answer_1: "<b>",
-    answer_2: "<strong>",
-    answer_3: "<bold>",
-    answer_4: "<em>",
+    question: "In HTML, what is the purpose of the <p> tag?",
+    answer_1: "Paragraph",
+    answer_2: "Page break",
+    answer_3: "Picture",
+    answer_4: "Positioning element",
     right_answer: 1,
   },
   {
@@ -61,13 +61,20 @@ let questions = [
 let currentQuestion = 0;
 
 function init() {
-  showQuestion();
+  show();
+}
+
+function show() {
+  if (currentQuestion < 7) {
+    showQuestion();
+  } else {
+  showEnd();
+  }
 }
 
 function showQuestion() {
   let question = questions[currentQuestion];
   let content = document.getElementById("currentQuestion");
-  let hello;
 
   content.innerHTML = "";
 
@@ -92,10 +99,36 @@ function showQuestionHTML(question) {
     </div>
 
     <div class="question_button">
-        <span> Frage <b>1</b> von <b id="all_questions_amount">${questions.length}</b> </span>
-        <button href="#" class="btn btn-primary" disabled id="question_button">Nächste Frage</button>
+        <span> Frage <b>${currentQuestion+1}</b> von <b id="all_questions_amount">${questions.length}</b> </span>
+        <button onclick="nextQuestion()" href="#" class="btn btn-primary" disabled id="question_button">Nächste Frage</button>
     </div>
 
+  `;
+}
+
+function showStart() {
+  let content = document.getElementById("currentQuestion");
+  content = "";
+
+  content.innerHTML = showStartHTML();
+}
+
+function showStartHTML() {
+  return /*html*/`
+    <h5 class="card-title">Welcome to the Quiz!!!</h5>
+  `;
+}
+
+function showEnd() {
+  let content = document.getElementById("currentQuestion");
+  content.innerHTML = "";
+
+  content.innerHTML = showEndHTML();
+}
+
+function showEndHTML() {
+  return /*html*/`
+    <h5 class="card-title">Ende!</h5>
   `;
 }
 
@@ -107,15 +140,15 @@ function checkAnswer(selectedAnswer) {
 
   if (selectedAnswerInteger == question["right_answer"]) {
     document.getElementById(selectedAnswer).classList.add("bg-success");
-    afterClicking();
+    afterClickingAnswer();
   } else {
     document.getElementById(selectedAnswer).classList.add("bg-danger");
     document.getElementById(rightAnswer).classList.add("bg-success");
-    afterClicking();
+    afterClickingAnswer();
   }
 }
 
-function afterClicking() {
+function afterClickingAnswer() {
   answerNotClickable();
   changeEnableStatusOfButton();
 }
@@ -129,4 +162,9 @@ function answerNotClickable() {
 
 function changeEnableStatusOfButton() {
   document.getElementById('question_button').disabled = false;
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  show();
 }
