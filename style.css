@@ -10,14 +10,23 @@
 body {
     min-height: 100vh;
     background-color: #FEFAEF !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    width: 50%;
+    min-width: 100px;
+    align-self: center;
 }
 
 .wrapper {
     display: flex;
-    height: 100vh;
-    width: 100vw;
     justify-content: center;
-    align-items: center;
+    height: 60%;
+    width: 80%;
+    margin: 8px;
 }
 
 aside {
@@ -25,9 +34,8 @@ aside {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 36px;
-    height: 60%;
-    padding: 8px;
+    gap: 56px;
+    padding: 32px 8px;
 }
 
 nav {
@@ -42,17 +50,19 @@ nav {
 .quiz_card {
     width: 30rem;
     background-color: #F7F7F7;
-    height: 60% !important;
+    border-radius: 0 !important;
 }
 
 .card-body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .card-title {
     text-align: center;
     font-family: 'Rubik', sans-serif;
+    margin-bottom: 500px;
 }
 
 .question_button {
@@ -66,4 +76,36 @@ nav {
 .quiz_answer_card:hover {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.03);
+}
+
+.end_screen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.end_img {
+    width: 40% !important;
+}
+
+.your_score {
+    color: orange;
+    font-weight: bold;
+}
+
+.score {
+    font-weight: bold;
+}
+
+.end_btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_replay {
+    background-color: #F7F7F7;
+    color: blue !important;
 }

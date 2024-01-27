@@ -16,7 +16,7 @@ let questions = [
     right_answer: 2,
   },
   {
-    question: "What does the HTML <a> tag primarily represent?",
+    question: "What does the HTML a-tag primarily represent?",
     answer_1: "Image container",
     answer_2: "Bold text",
     answer_3: "Navigation link",
@@ -24,7 +24,7 @@ let questions = [
     right_answer: 3,
   },
   {
-    question: "What is the purpose of the <head> element in HTML?",
+    question: "What is the purpose of the head-element in HTML?",
     answer_1: "To contain metadata about the document",
     answer_2: "To define a header section for a webpage",
     answer_3: "To define the body of the document",
@@ -32,7 +32,7 @@ let questions = [
     right_answer: 1,
   },
   {
-    question: "In HTML, what is the purpose of the <p> tag?",
+    question: "In HTML, what is the purpose of the p-tag?",
     answer_1: "Paragraph",
     answer_2: "Page break",
     answer_3: "Picture",
@@ -49,7 +49,7 @@ let questions = [
     right_answer: 4,
   },
   {
-    question: "What is the purpose of the <div> element in HTML?",
+    question: "What is the purpose of the div-element in HTML?",
     answer_1: "To create a hyperlink",
     answer_2: "To define a division or a section in a HTML document",
     answer_3: "To format text as bold",
@@ -74,8 +74,8 @@ function showStart() {
 
 function showStartHTML() {
   return /*html*/`
-    <h5 class="card-title">Welcome to the Quiz!!!</h5>
-    <button onclick="show()" class="btn btn-primary">START NOW   ></button>
+    <h5 class="card-title">Welcome to <br> The Awesome HTML Quiz</h5>
+    <button onclick="show()" class="btn btn-primary button">START NOW</button>
   `;
 }
 
@@ -130,8 +130,18 @@ function showEnd() {
 
 function showEndHTML() {
   return /*html*/`
-    <h5 class="card-title">Ende!</h5>
-    <button onclick="restart()" class="btn btn-primary">YOUR SCORE ${score}/7</button>
+    <div class="end_screen">
+      <img class="end_img" src="./img/brain_result.png ">
+      <h5 class="card-title">COMPLETE HTML QUIZ</h5>
+      <div>
+        <span class="your_score">YOUR SCORE</span>
+        <span class="score"> ${score}/7</span>
+      </div>
+      <div class="end_btns">
+        <button class="btn btn-primary button">SHARE</button>
+        <button onclick="restart()" class="btn button button_replay">REPLAY</button>
+      </div>
+    </div>
   `;
 }
 
