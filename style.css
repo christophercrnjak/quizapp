@@ -109,3 +109,10 @@ nav {
     background-color: #F7F7F7;
     color: blue !important;
 }
+
+.bg_img {
+    background-image: url(./img/brainbg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}

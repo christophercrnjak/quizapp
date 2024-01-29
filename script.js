@@ -60,6 +60,10 @@ let questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let progressInPercent = 0;
+let AUDIO_SUCCESS = new Audio("./audio/success.mp3");
+let AUDIO_FAIL = new Audio("./audio/fail.mp3");
+
 
 function init() {
   showStart();
@@ -69,12 +73,13 @@ function showStart() {
   let content = document.getElementById("currentQuestion");
   content.innerHTML = "";
 
+  content.classList.add("bg_img");
   content.innerHTML = showStartHTML();
 }
 
 function showStartHTML() {
   return /*html*/`
-    <h5 class="card-title">Welcome to <br> The Awesome HTML Quiz</h5>
+    <h5 style="padding-bottom: 184px" class="card-title">Welcome to <br> The Awesome HTML Quiz</h5>
     <button onclick="show()" class="btn btn-primary button">START NOW</button>
   `;
 }
@@ -93,31 +98,38 @@ function showQuestion() {
 
   content.innerHTML = "";
 
+  content.classList.remove("bg_img");
   content.innerHTML = showQuestionHTML(question);
 }
 
 function showQuestionHTML(question) {
   return /*html*/ `
-    <h5 class="card-title">${question["question"]}</h5>
+
+<h5 class="card-title">${question["question"]}</h5>
 
     <div class="card quiz_answer_card mb-2" id="answer_1" onclick="checkAnswer('answer_1')">
         <div class="card-body">${question["answer_1"]}</div>
     </div>
     <div class="card quiz_answer_card mb-2" id="answer_2" onclick="checkAnswer('answer_2')">
-        <div class="card-body">${question["answer_2"]}</div>
+      <div class="card-body">${question["answer_2"]}</div>
     </div>
     <div class="card quiz_answer_card mb-2" id="answer_3" onclick="checkAnswer('answer_3')">
         <div class="card-body">${question["answer_3"]}</div>
     </div>
     <div class="card quiz_answer_card mb-2" id="answer_4" onclick="checkAnswer('answer_4')">
         <div class="card-body">${question["answer_4"]}</div>
-    </div>
+      </div>
 
-    <div class="question_button">
+      <div class="question_button">
         <span> Frage <b>${currentQuestion+1}</b> von <b id="all_questions_amount">${questions.length}</b> </span>
         <button onclick="nextQuestion()" href="#" class="btn btn-primary" disabled id="question_button">Nächste Frage</button>
     </div>
 
+    <br>
+
+        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar" style="width: ${fillPercentage()}%">${fillPercentage()} %</div>
+        </div>
   `;
 }
 
@@ -138,7 +150,7 @@ function showEndHTML() {
         <span class="score"> ${score}/7</span>
       </div>
       <div class="end_btns">
-        <button class="btn btn-primary button">SHARE</button>
+        <button type="button" class="btn btn-primary button">SHARE</button>
         <button onclick="restart()" class="btn button button_replay">REPLAY</button>
       </div>
     </div>
@@ -153,11 +165,13 @@ function checkAnswer(selectedAnswer) {
 
   if (selectedAnswerInteger == question["right_answer"]) {
     document.getElementById(selectedAnswer).classList.add("bg-success");
+    AUDIO_SUCCESS.play();
     afterClickingAnswer();
     score++;
   } else {
     document.getElementById(selectedAnswer).classList.add("bg-danger");
     document.getElementById(rightAnswer).classList.add("bg-success");
+    AUDIO_FAIL.play();
     afterClickingAnswer();
   }
 }
@@ -185,6 +199,34 @@ function nextQuestion() {
 
 function restart() {
   currentQuestion = 0;
+  progressInPercent = 0;
   score = 0;
   showStart();
+}
+
+function fillPercentage() {
+  switch (currentQuestion) {
+    case 1:
+      progressInPercent = 14;
+      break;
+    case 2:
+      progressInPercent = 29;
+      break;
+    case 3: 
+      progressInPercent = 43;
+      break;
+    case 4:
+      progressInPercent = 57;
+      break;
+    case 5:
+      progressInPercent = 71;
+      break;
+    case 6:
+      progressInPercent = 86;
+      break;
+    default:
+      break;
+  }
+
+  return progressInPercent;
 }
